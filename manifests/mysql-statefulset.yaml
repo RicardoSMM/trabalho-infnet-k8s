@@ -41,12 +41,12 @@ spec:
         volumeMounts:
           - name: mysql-persistent-storage
             mountPath: /var/lib/mysql
-volumeClaimTemplates:
-  - metadata:
-      name: mysql-persistent-storage
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "longhorn"
-      resources:
-        requests:
-          storage: 2Gi
+  volumeClaimTemplates:
+    - metadata:
+        name: mysql-persistent-storage
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: "longhorn"
+        resources:
+          requests:
+            storage: 2Gi
