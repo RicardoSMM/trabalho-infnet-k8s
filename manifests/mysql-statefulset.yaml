@@ -3,6 +3,8 @@ kind: StatefulSet
 metadata:
   name: mysql-statefulset
   namespace: wp-projeto
+  labels:
+    app: mysql-statefulset
 spec:
   selector:
     matchLabels:
@@ -39,7 +41,12 @@ spec:
         volumeMounts:
           - name: mysql-persistent-storage
             mountPath: /var/lib/mysql
-      volumes:
-      - name: mysql-persistent-storage
-        persistentVolumeClaim:
-          claimName: mysql-pvc
+volumeClaimTemplates:
+  - metadata:
+      name: mysql-persistent-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "longhorn"
+      resources:
+        requests:
+          storage: 2Gi
