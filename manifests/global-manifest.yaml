@@ -203,7 +203,7 @@ metadata:
     app: wordpress
 spec:
   rules:
-  - host: "3.228.5.0.sslip.io"
+  - host: "3.239.203.213.sslip.io"
     http:
       paths:
       - pathType: Prefix
