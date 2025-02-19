@@ -6,6 +6,6 @@ metadata:
 data:
   WORDPRESS_DB_USER: wordpress_user
   WORDPRESS_DB_NAME: wordpress_db
-  WORDPRESS_DB_HOST: mysql
+  WORDPRESS_DB_HOST: wordpress-mysql
   MYSQL_USER: wordpress_user
   MYSQL_DATABASE: wordpress_db
