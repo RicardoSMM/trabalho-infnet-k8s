@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mysql-statefulset
+  name: mysql
   namespace: wp-projeto
   labels:
-    app: mysql-statefulset
+    app: mysql
 spec:
   selector:
     matchLabels:
-      app: mysql-statefulset
-  serviceName: mysql-service
+      app: mysql
+  serviceName: mysql
   replicas: 1
   template:
     metadata:
       labels:
-        app: mysql-statefulset
+        app: mysql
     spec:
       containers:
-      - name: mysql-statefulset
+      - name: mysql
         image: mysql:5.6
         ports:
         - containerPort: 3306
-          name: mysql-statefulset
+          name: mysql
         env:
         - name: MYSQL_DATABASE
           valueFrom:
@@ -42,11 +42,11 @@ spec:
           - name: mysql-persistent-storage
             mountPath: /var/lib/mysql
   volumeClaimTemplates:
-    - metadata:
-        name: mysql-persistent-storage
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        storageClassName: "longhorn"
-        resources:
-          requests:
-            storage: 2Gi
+  - metadata:
+      name: mysql-persistent-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "longhorn"
+      resources:
+        requests:
+          storage: 2Gi
