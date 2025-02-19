@@ -4,7 +4,7 @@ metadata:
   name: mysql-service
   namespace: wp-projeto
 spec:
-  ClusterIP: None
+  clusterIP: None
   selector:
     app: mysql-service
   ports:
