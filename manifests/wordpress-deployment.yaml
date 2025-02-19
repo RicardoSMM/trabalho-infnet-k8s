@@ -45,9 +45,9 @@ spec:
         - containerPort: 80
           name: wordpress
         volumeMounts:
-        - name: wp-statefulset
+        - name: wp-pvc
           mountPath: /var/www/html
       volumes:
-      - name: wp-statefulset
+      - name: wp-pvc
         persistentVolumeClaim:
           claimName: wp-pvc
