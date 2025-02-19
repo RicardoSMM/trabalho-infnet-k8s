@@ -12,10 +12,10 @@ metadata:
   name: proj-config
   namespace: wp-projeto
 data:
-  WORDPRESS_DB_USER: root
+  WORDPRESS_DB_USER: wordpress_user
   WORDPRESS_DB_NAME: wordpress
   WORDPRESS_DB_HOST:  mysql.wp-projeto.svc.cluster.local
-  MYSQL_USER: root
+  MYSQL_USER: wordpress_user
   MYSQL_DATABASE: wordpress_db
 
 ---
