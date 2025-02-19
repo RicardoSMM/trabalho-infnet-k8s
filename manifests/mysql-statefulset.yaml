@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: mysql-statefulset
   namespace: wp-projeto
-  spec:
+spec:
   selector:
     matchLabels:
       app: mysql-statefulset
