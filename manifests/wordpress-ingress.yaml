@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wp-ingress
+  namespace: wp-projeto
+  labels:
+    name: wp-ingress
+spec:
+  rules:
+  - host: "54.172.78.221.sslip.io"
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: wp-service
+            port: 
+              number: 80

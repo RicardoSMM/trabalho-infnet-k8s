@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-statefulset
+  namespace: wp-projeto
+  spec:
+  selector:
+    matchLabels:
+      app: mysql-statefulset
+  serviceName: mysql-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql-statefulset
+    spec:
+      containers:
+      - name: mysql-statefulset
+        image: mysql:5.6
+        ports:
+        - containerPort: 3306
+          name: mysql-statefulset
+    env:
+    - name: MYSQL_DATABASE
+      valueFrom:
+        configMapKeyRef:
+          name: proj-config
+          key: MYSQL_DATABASE
+    - name: MYSQL_USER
+      valueFrom:
+        configMapKeyRef:
+          name: proj-config
+          key: MYSQL_USER
+    - name: MYSQL_ROOT_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: wp-secret
+          key: MYSQL_ROOT_PASSWORD

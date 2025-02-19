@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wp-service
+  namespace: wp-projeto
+spec:
+  type: ClusterIP
+  selector:
+    app: wp-service
+  ports:
+  - port: 80
+    targetPort: 80
