@@ -4,16 +4,16 @@ metadata:
   name: wp-ingress
   namespace: wp-projeto
   labels:
-    name: wp-ingress
+    app: wordpress
 spec:
   rules:
-  - host: "54.172.78.221.sslip.io"
+  - host: "3.228.5.0.sslip.io"
     http:
       paths:
       - pathType: Prefix
         path: /
         backend:
           service:
-            name: wp-service
-            port: 
+            name: wordpress
+            port:
               number: 80
