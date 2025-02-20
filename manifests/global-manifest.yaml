@@ -14,7 +14,7 @@ metadata:
 data:
   WORDPRESS_DB_USER: wordpress_user
   WORDPRESS_DB_NAME: wordpress
-  WORDPRESS_DB_HOST:  mysql.wp-projeto.svc.cluster.local
+  WORDPRESS_DB_HOST:  mysql
   MYSQL_USER: wordpress_user
   MYSQL_DATABASE: wordpress_db
 
