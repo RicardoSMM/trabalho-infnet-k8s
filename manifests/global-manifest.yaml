@@ -5,21 +5,19 @@ metadata:
   name: wp-projeto
 
 ---
-# ConfigMap
+# ConfigMap WP
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: proj-config
+  name: wp-config
   namespace: wp-projeto
 data:
   WORDPRESS_DB_USER: wordpress_user
   WORDPRESS_DB_NAME: wordpress
   WORDPRESS_DB_HOST:  mysql
-  MYSQL_USER: wordpress_user
-  MYSQL_DATABASE: wordpress
 
 ---
-# Secret
+# Secret WP
 apiVersion: v1
 kind: Secret
 metadata:
@@ -28,6 +26,27 @@ metadata:
 type: Opaque
 data:
   WORDPRESS_DB_PASSWORD: MTIzNDU2 #123456
+
+---
+# ConfigMap MYSQL
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config
+  namespace: wp-projeto
+data:
+  MYSQL_USER: wordpress_user
+  MYSQL_DATABASE: wordpress
+
+---
+# Secret MYSQL
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+  namespace: wp-projeto
+type: Opaque
+data:
   MYSQL_PASSWORD: MTIzNDU2 #123456
   MYSQL_ROOT_PASSWORD: MTIzNDU2 #123456
 
@@ -76,22 +95,22 @@ spec:
         - name: MYSQL_DATABASE
           valueFrom:
             configMapKeyRef:
-              name: proj-config
+              name: mysql-config
               key: MYSQL_DATABASE
         - name: MYSQL_USER
           valueFrom:
             configMapKeyRef:
-              name: proj-config
+              name: mysql-config
               key: MYSQL_USER
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: wp-secret
+              name: mysql-secret
               key: MYSQL_ROOT_PASSWORD
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: wp-secret
+              name: mysql-secret
               key: MYSQL_PASSWORD
         volumeMounts:
           - name: mysql-persistent-storage
@@ -134,7 +153,7 @@ spec:
         - name: WORDPRESS_DB_HOST
           valueFrom:
             configMapKeyRef:
-              name: proj-config
+              name: wp-config
               key: WORDPRESS_DB_HOST
         - name: WORDPRESS_DB_PASSWORD
           valueFrom:
@@ -144,12 +163,12 @@ spec:
         - name: WORDPRESS_DB_USER
           valueFrom:
             configMapKeyRef:
-              name: proj-config
+              name: wp-config
               key: WORDPRESS_DB_USER
         - name: WORDPRESS_DB_NAME
           valueFrom:
             configMapKeyRef:
-              name: proj-config
+              name: wp-config
               key: WORDPRESS_DB_NAME
         ports:
         - containerPort: 80
