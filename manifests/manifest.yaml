@@ -232,7 +232,7 @@ metadata:
     app: wordpress
 spec:
   rules:
-  - host: "wp.18.211.103.145.sslip.io"
+  - host: "wp.34.231.239.173.sslip.io"
     http:
       paths:
       - pathType: Prefix
